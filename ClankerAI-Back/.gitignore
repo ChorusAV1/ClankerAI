@@ -1,0 +1,77 @@
+# ==========================================
+# Entornos Virtuales y Dependencias
+# ==========================================
+venv/
+.venv/
+env/
+ENV/
+bin/
+lib/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ==========================================
+# Archivos de Configuración y Secretos (¡CRÍTICO!)
+# ==========================================
+.env
+*.env
+.env.*
+!.env.example
+secrets.toml
+
+# ==========================================
+# Caché de Python y Compilación
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ==========================================
+# Pruebas, Cobertura y Linters (Pytest, Mypy, Ruff)
+# ==========================================
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# ==========================================
+# Bases de Datos Locales (SQLite / Migraciones)
+# ==========================================
+*.db
+*.sqlite3
+*.sqlite3-journal
+
+# ==========================================
+# Configuración de IDEs (VS Code, PyCharm)
+# ==========================================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ==========================================
+# Sistema Operativo
+# ==========================================
+.DS_Store
+Thumbs.db
