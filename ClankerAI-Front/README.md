@@ -1,75 +1,48 @@
-# React + TypeScript + Vite
+﻿# ClankerAI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript UI for an academic e-commerce decision assistant, built with Vite and Tailwind CSS. The Spanish interface follows the desktop and mobile mockups in `../References`.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+From this directory:
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Open the local URL printed by Vite. The current UI runs independently of Python.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+npm run build    # TypeScript checks and production build
+npm run preview  # Serve the production build locally
 ```
+
+## Screens and interactions
+
+- **Resumen** (`#/resumen`): inventory KPIs, category coverage, and priority alerts that open the corresponding recommendation.
+- **Predicción de demanda** (`#/demanda`): four category filters, 4/8/12-week horizons, updated demand and coverage metrics, and historical/forecast charts.
+- **Recomendaciones** (`#/recs`): purchase and discount tabs, simulated approvals and rejections, pending counts, notifications, and a reset once all seven recommendations have been reviewed.
+- **Desempeño del modelo** (`#/modelo`): sample model metrics, actual/predicted chart, and category error table.
+
+Navigation supports direct links and browser back/forward. Filters and decisions remain in memory when switching screens and reset on a full reload. Tables become labeled cards on mobile. The mobile drawer supports Escape, focus trapping, focus restoration, and closing through its backdrop. Charts support pointer tooltips and keyboard exploration with Left/Right, Home/End, and Escape. Reduced-motion preferences are respected.
+
+## Source structure
+
+```text
+src/
+  App.tsx          Navigation and shared UI state
+  components/      Sidebar, icons, metric cards, charts, notifications
+  data/demo.ts     Typed sample data adapted from the reference mockup
+  pages/           The four dashboard screens
+  types.ts         Shared data and UI types
+  index.css        Tailwind entry point, theme, and responsive styles
+```
+
+## Current stage
+
+All values, recommendations, model names, and performance figures are UI fixtures. The CSV has not been loaded, no model has been trained, and no API requests are made. Login is intentionally deferred. Next stages are FastAPI endpoints with hardcoded responses, followed by the basic date-based machine-learning proof of concept. The eventual model can replace the illustrative Random Forest label and metrics from the mockup.
+
+## Validation
+
+The production build was checked, and the interface was exercised in headless Edge at widths from 320 to 1920 pixels. Browser checks covered all 12 category/horizon combinations, chart keyboard controls, approvals/rejections, completion/reset, alert links, direct-link refresh, browser history, mobile drawer focus behavior, responsive tables, and page overflow. No browser exceptions, console errors, or failed HTTP responses were observed.
