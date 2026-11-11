@@ -1,30 +1,133 @@
-import { inventoryCoverage, priorityAlerts } from '../data/demo'
-import { Icon } from '../components/Icon'
+
+import { useEffect, useState } from 'react'
+import {
+  api,
+  type DashboardOverview,
+  type CategorySummary,
+} from '../services/api'
 import { MetricCard } from '../components/MetricCard'
 
-export function Overview({ onSelectRecommendation }: { onSelectRecommendation: (id: string) => void }) {
+export function Overview(_props: {
+  onSelectRecommendation: (id: string) => void
+}) {
+  const [resumen, setResumen] = useState<DashboardOverview | null>(null)
+  const [categorias, setCategorias] = useState<CategorySummary[]>([])
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    Promise.all([
+      api.getOverview(),
+      api.getCategories(),
+    ])
+      .then(([datosResumen, datosCategorias]) => {
+        setResumen(datosResumen)
+        setCategorias(datosCategorias)
+      })
+      .catch(() => setError('No se pudieron cargar los datos'))
+  }, [])
+
+  if (error) return <p>{error}</p>
+  if (!resumen) return <p>Cargando resumen...</p>
+
+  const clientesRiesgo =
+    (resumen.riesgo_abandono['High'] ?? 0) +
+    (resumen.riesgo_abandono['Very High'] ?? 0)
+
+  const dinero = (valor: number) =>
+    valor.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    })
+
   return <>
     <div className="grid g4 mb">
-      <MetricCard title="Disponibilidad productos clave" value="96.2%" icon="box" footer={<span className="delta up"><span className="arrow" aria-hidden="true">▲</span>1.4 pts</span>} detail="meta > 95%" />
-      <MetricCard title="Productos en riesgo de quiebre" value="12" icon="warning" tone="red" footer={<span className="delta down"><span className="arrow" aria-hidden="true">●</span>Próximos 30 días</span>} />
-      <MetricCard title="Valor en sobrestock" value="$48,300" icon="dollar" tone="amber" footer={<span className="delta down"><span className="arrow" aria-hidden="true">●</span>9 productos de baja rotación</span>} />
-      <MetricCard title="Error del modelo (MAPE)" value="11.8%" icon="activity" tone="mint" footer={<span className="delta up"><span className="arrow" aria-hidden="true">●</span>Meta &lt; 15%</span>} />
+      <MetricCard
+        title="Clientes registrados"
+        value={resumen.total_clientes.toLocaleString()}
+        icon="box"
+        footer="Total del dataset"
+      />
+
+      <MetricCard
+        title="Clientes en riesgo"
+        value={clientesRiesgo.toLocaleString()}
+        icon="warning"
+        tone="red"
+        footer="Riesgo alto y muy alto"
+      />
+
+      <MetricCard
+        title="Gasto total"
+        value={dinero(resumen.gasto_total_usd)}
+        icon="dollar"
+        tone="amber"
+        footer="Gasto acumulado de clientes"
+      />
+
+      <MetricCard
+        title="Valor promedio de pedido"
+        value={dinero(resumen.ticket_promedio_usd)}
+        icon="activity"
+        tone="mint"
+        footer="Promedio del dataset"
+      />
     </div>
+
     <div className="grid g2">
       <article className="card">
-        <div className="card-head"><h3>Alertas prioritarias</h3><span className="mini-tag">4 activas</span></div>
-        <p className="card-hint">Selecciona una alerta para ver su recomendación</p>
-        {priorityAlerts.map(alert => <button key={alert.recommendationId} className="alert" onClick={() => onSelectRecommendation(alert.recommendationId)}>
-          <span className="alert-main"><span className={`dot ${alert.tone}`} aria-hidden="true" /><span className="alert-txt">{alert.text}</span></span>
-          <span className={`pill ${alert.tone === 'red' ? 'p-no' : 'p-wait'}`}>{alert.urgency}</span><Icon name="chevron" className="chev" />
-        </button>)}
+        <div className="card-head">
+          <h3>Distribución de riesgo de abandono</h3>
+          <span className="mini-tag">Clientes</span>
+        </div>
+
+        <div className="table-wrap">
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Nivel de riesgo</th>
+                <th>Clientes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(resumen.riesgo_abandono).map(
+                ([riesgo, cantidad]) => (
+                  <tr key={riesgo}>
+                    <td>{riesgo}</td>
+                    <td>{cantidad.toLocaleString()}</td>
+                  </tr>
+                )
+              )}
+            </tbody>
+          </table>
+        </div>
       </article>
+
       <article className="card">
-        <div className="card-head"><h3>Cobertura de inventario por categoría</h3><span className="mini-tag">días</span></div>
-        <div className="cov">{inventoryCoverage.map(item => <div key={item.category}>
-          <div className="cov-top"><span>{item.category}</span><b>{item.days} d</b></div>
-          <div className="bar" role="meter" aria-label={`Cobertura de ${item.category}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={item.days} aria-valuetext={`${item.days} días`}><i className={`bar-${item.tone}`} style={{ width: `${item.progress}%` }} /></div>
-        </div>)}</div>
+        <div className="card-head">
+          <h3>Categorías preferidas</h3>
+          <span className="mini-tag">Clientes</span>
+        </div>
+
+        <div className="table-wrap">
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Categoría</th>
+                <th>Clientes</th>
+                <th>Porcentaje</th>
+              </tr>
+            </thead>
+            <tbody>
+              {categorias.map(item => (
+                <tr key={item.categoria}>
+                  <td>{item.categoria}</td>
+                  <td>{item.clientes.toLocaleString()}</td>
+                  <td>{item.porcentaje}%</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </article>
     </div>
   </>

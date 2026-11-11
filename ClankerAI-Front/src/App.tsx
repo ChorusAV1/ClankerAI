@@ -7,7 +7,8 @@ import { Overview } from './pages/Overview'
 import { Demand } from './pages/Demand'
 import { Recommendations } from './pages/Recommendations'
 import { ModelPerformance } from './pages/ModelPerformance'
-import type { Category, Decision, Decisions, Notification, Page, RecommendationKind, Tone } from './types'
+import type { Decision, Decisions, Notification, Page, RecommendationKind, Tone } from './types'
+import { api } from './services/api'
 
 function subscribeToLocation(callback: () => void) {
   window.addEventListener('hashchange', callback)
@@ -32,8 +33,6 @@ function App() {
   const page = useSyncExternalStore(subscribeToLocation, currentPage)
   const headerScrolled = useSyncExternalStore(subscribeToScroll, isHeaderScrolled)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [category, setCategory] = useState<Category>('Electrónica')
-  const [horizon, setHorizon] = useState(8)
   const [tab, setTab] = useState<RecommendationKind>('compras')
   const [selected, setSelected] = useState<string | null>(null)
   const [decisions, setDecisions] = useState<Decisions>({})
@@ -42,6 +41,12 @@ function App() {
   const closeMenu = useCallback(() => setMenuOpen(false), [])
   const dismissNotification = useCallback((id: number) => setNotifications(items => items.filter(item => item.id !== id)), [])
   const pending = recommendations.filter(item => !decisions[item.id]).length
+
+useEffect(() => {
+  api.getOverview()
+    .then(data => console.log('Backend ClankerAI:', data))
+    .catch(error => console.error('Error de conexión:', error))
+}, [])
 
   useEffect(() => {
     document.title = `ClankerAI · ${pages[page].title}`
@@ -94,8 +99,7 @@ function App() {
         </header>
         <section key={page} className="screen on" id="main-content" tabIndex={-1} aria-labelledby="page-title">
           {page === 'resumen' && <Overview onSelectRecommendation={selectRecommendation} />}
-          {page === 'demanda' && <Demand category={category} horizon={horizon} onCategoryChange={setCategory} onHorizonChange={setHorizon} />}
-          {page === 'recs' && <Recommendations tab={tab} onTabChange={changeTab} selected={selected} decisions={decisions} onDecide={decide} onReset={reset} />}
+{page === 'demanda' && <Demand />}          {page === 'recs' && <Recommendations tab={tab} onTabChange={changeTab} selected={selected} decisions={decisions} onDecide={decide} onReset={reset} />}
           {page === 'modelo' && <ModelPerformance />}
         </section>
       </main>
