@@ -42,7 +42,6 @@ function App() {
   const nextNotification = useRef(0)
   const closeMenu = useCallback(() => setMenuOpen(false), [])
   const dismissNotification = useCallback((id: number) => setNotifications(items => items.filter(item => item.id !== id)), [])
-  const pending = recommendations.filter(item => !decisions[item.id]).length
 
 useEffect(() => {
   api.getOverview()
@@ -90,7 +89,7 @@ useEffect(() => {
     <div className="ambient" aria-hidden="true"><span className="orb orb-a" /><span className="orb orb-b" /><span className="orb orb-c" /></div>
     <div className="grain" aria-hidden="true" />
     <div className="shell">
-      <Sidebar page={page} pending={pending} open={menuOpen} onClose={closeMenu} />
+      <Sidebar page={page} open={menuOpen} onClose={closeMenu} />
       <button className="sidebar-entry-button" type="button" onClick={() => { setMenuOpen(false); setEntryOpen(true) }}>
         <span aria-hidden="true">＋</span> Ingresar datos
       </button>

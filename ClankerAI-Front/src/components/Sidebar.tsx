@@ -13,12 +13,11 @@ const navigation: { page: Page; icon: IconName }[] = [
 
 interface SidebarProps {
   page: Page
-  pending: number
   open: boolean
   onClose: () => void
 }
 
-export function Sidebar({ page, pending, open, onClose }: SidebarProps) {
+export function Sidebar({ page, open, onClose }: SidebarProps) {
   const sidebar = useRef<HTMLElement>(null)
   const closeButton = useRef<HTMLButtonElement>(null)
 
@@ -61,7 +60,6 @@ export function Sidebar({ page, pending, open, onClose }: SidebarProps) {
           <span className="nav-ind" aria-hidden="true" style={{ transform: `translateY(${navigation.findIndex(item => item.page === page) * 46}px)` }} />
           {navigation.map(item => <a key={item.page} href={`#/${item.page}`} className={`nav${page === item.page ? ' on' : ''}`} aria-current={page === item.page ? 'page' : undefined} onClick={onClose}>
             <Icon name={item.icon} /><span className="nav-label">{pages[item.page].title}</span>
-            {item.page === 'recs' && <span className={`badge${pending === 0 ? ' zero' : ''}`} aria-label={`${pending} recomendaciones pendientes`}>{pending}</span>}
           </a>)}
         </nav>
         <div className="side-foot"><span className="avatar" aria-hidden="true">EC</span><div><b>Encargado de compras</b><small>Tienda demo · Prototipo v0.1</small></div></div>
