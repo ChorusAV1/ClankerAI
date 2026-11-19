@@ -1,0 +1,11 @@
+{
+  "modelo": "RandomForestRegressor",
+  "origen_datos": "sintetico",
+  "tipo_evaluacion": "pronostico_recursivo_12_semanas_sin_valores_futuros",
+  "filas_entrenamiento": 972,
+  "filas_validacion": 144,
+  "mae_unidades": 418.764,
+  "rmse_unidades": 495.379,
+  "wape_porcentaje": 10.826,
+  "wape_baseline_4s_porcentaje": 6.466
+}

@@ -1,0 +1,16 @@
+Entrada: data/synthetic/demanda_semanal.csv
+Semanas históricas: 105 (2024-10-28 a 2026-10-26)
+Categorías: 12
+Entrenamiento: 972 filas (hasta 2026-08-03)
+Validación: 144 filas (2026-08-10 a 2026-10-26)
+Calendario futuro: 144 filas (2026-11-02 a 2027-01-18)
+
+IMPORTANTE:
+- El Excel original no se modifica. El origen de las ventas es SINTÉTICO.
+- El CSV de futuro NO incluye valores observados ni pronósticos inventados.
+- Antes de desplegar, entrenar un modelo usando solo entrenamiento.
+- Para evaluar 12 pasos de verdad, pronosticar recursivamente desde el corte
+  SIN usar los lags precalculados de validación para semanas posteriores.
+- Para el pronóstico futuro, construir lags desde el historial y agregar
+  sucesivamente cada predicción; NO rellenar los lags futuros con ceros.
+- No interpreta ventas como inventario disponible ni demanda real.

@@ -3,14 +3,14 @@
         "accuracy": 0.7409,
         "f1_macro": 0.6897,
         "train_accuracy": 0.7749,
-        "tiempo_segundos": 0.86,
+        "tiempo_segundos": 0.89,
         "archivo": "random_forest.joblib"
     },
     "Regresion Logistica": {
         "accuracy": 0.5791,
         "f1_macro": 0.459,
         "train_accuracy": 0.5868,
-        "tiempo_segundos": 0.22,
+        "tiempo_segundos": 0.21,
         "archivo": "logistic_regression.joblib"
     }
 }

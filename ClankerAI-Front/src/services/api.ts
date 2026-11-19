@@ -1,4 +1,3 @@
-
 const API_URL = 'http://127.0.0.1:8000/api'
 
 async function getData<T>(endpoint: string): Promise<T> {
@@ -32,6 +31,27 @@ export interface ModelMetrics {
   archivo: string
 }
 
+export interface DemandPoint {
+  semana_inicio: string
+  unidades: number
+}
+
+export interface DemandForecast {
+  categoria: string
+  semanas: number
+  origen_datos: string
+  historico: DemandPoint[]
+  pronostico: DemandPoint[]
+  total_previsto: number
+  metricas: {
+    modelo: string
+    mae_unidades: number
+    rmse_unidades: number
+    wape_porcentaje: number
+    wape_baseline_4s_porcentaje: number
+  } | null
+}
+
 export const api = {
   getOverview: () =>
     getData<DashboardOverview>('/overview'),
@@ -41,4 +61,11 @@ export const api = {
 
   getModelPerformance: () =>
     getData<Record<string, ModelMetrics>>('/model/performance'),
+
+  getDemandForecast: (category: string, weeks: number = 12) =>
+    getData<DemandForecast>(`/demand-forecast?category=${encodeURIComponent(category)}&weeks=${weeks}`),
 }
+
+
+
+0

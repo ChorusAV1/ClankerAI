@@ -1,0 +1,145 @@
+﻿semana_inicio,categoria,unidades_predichas,paso_pronostico
+2026-11-02,Automotive,4184,1
+2026-11-02,Beauty,4130,1
+2026-11-02,Books,4159,1
+2026-11-02,Electronics,4139,1
+2026-11-02,Fashion,4142,1
+2026-11-02,Grocery,4198,1
+2026-11-02,Health & Personal Care,4086,1
+2026-11-02,Home & Kitchen,4038,1
+2026-11-02,Office Supplies,4183,1
+2026-11-02,Pet Supplies,4187,1
+2026-11-02,Sports & Fitness,4223,1
+2026-11-02,Toys,4102,1
+2026-11-09,Automotive,3746,2
+2026-11-09,Beauty,3663,2
+2026-11-09,Books,3586,2
+2026-11-09,Electronics,3594,2
+2026-11-09,Fashion,3560,2
+2026-11-09,Grocery,3606,2
+2026-11-09,Health & Personal Care,3553,2
+2026-11-09,Home & Kitchen,3557,2
+2026-11-09,Office Supplies,3737,2
+2026-11-09,Pet Supplies,3623,2
+2026-11-09,Sports & Fitness,3846,2
+2026-11-09,Toys,3549,2
+2026-11-16,Automotive,3473,3
+2026-11-16,Beauty,3409,3
+2026-11-16,Books,3418,3
+2026-11-16,Electronics,3370,3
+2026-11-16,Fashion,3335,3
+2026-11-16,Grocery,3357,3
+2026-11-16,Health & Personal Care,3351,3
+2026-11-16,Home & Kitchen,3372,3
+2026-11-16,Office Supplies,3478,3
+2026-11-16,Pet Supplies,3409,3
+2026-11-16,Sports & Fitness,3500,3
+2026-11-16,Toys,3352,3
+2026-11-23,Automotive,4043,4
+2026-11-23,Beauty,4033,4
+2026-11-23,Books,4070,4
+2026-11-23,Electronics,4045,4
+2026-11-23,Fashion,4046,4
+2026-11-23,Grocery,4025,4
+2026-11-23,Health & Personal Care,3789,4
+2026-11-23,Home & Kitchen,3989,4
+2026-11-23,Office Supplies,4089,4
+2026-11-23,Pet Supplies,4044,4
+2026-11-23,Sports & Fitness,4067,4
+2026-11-23,Toys,4048,4
+2026-11-30,Automotive,4103,5
+2026-11-30,Beauty,4104,5
+2026-11-30,Books,4198,5
+2026-11-30,Electronics,4161,5
+2026-11-30,Fashion,4137,5
+2026-11-30,Grocery,4115,5
+2026-11-30,Health & Personal Care,4144,5
+2026-11-30,Home & Kitchen,4111,5
+2026-11-30,Office Supplies,4133,5
+2026-11-30,Pet Supplies,4110,5
+2026-11-30,Sports & Fitness,4129,5
+2026-11-30,Toys,4050,5
+2026-12-07,Automotive,3633,6
+2026-12-07,Beauty,3550,6
+2026-12-07,Books,3638,6
+2026-12-07,Electronics,3559,6
+2026-12-07,Fashion,3580,6
+2026-12-07,Grocery,3582,6
+2026-12-07,Health & Personal Care,3647,6
+2026-12-07,Home & Kitchen,3519,6
+2026-12-07,Office Supplies,3674,6
+2026-12-07,Pet Supplies,3569,6
+2026-12-07,Sports & Fitness,3753,6
+2026-12-07,Toys,3508,6
+2026-12-14,Automotive,3399,7
+2026-12-14,Beauty,3346,7
+2026-12-14,Books,3462,7
+2026-12-14,Electronics,3340,7
+2026-12-14,Fashion,3352,7
+2026-12-14,Grocery,3360,7
+2026-12-14,Health & Personal Care,3479,7
+2026-12-14,Home & Kitchen,3299,7
+2026-12-14,Office Supplies,3414,7
+2026-12-14,Pet Supplies,3351,7
+2026-12-14,Sports & Fitness,3479,7
+2026-12-14,Toys,3311,7
+2026-12-21,Automotive,4008,8
+2026-12-21,Beauty,4033,8
+2026-12-21,Books,4024,8
+2026-12-21,Electronics,4042,8
+2026-12-21,Fashion,4024,8
+2026-12-21,Grocery,3993,8
+2026-12-21,Health & Personal Care,3879,8
+2026-12-21,Home & Kitchen,4040,8
+2026-12-21,Office Supplies,4051,8
+2026-12-21,Pet Supplies,4011,8
+2026-12-21,Sports & Fitness,4034,8
+2026-12-21,Toys,4032,8
+2026-12-28,Automotive,4087,9
+2026-12-28,Beauty,4106,9
+2026-12-28,Books,4123,9
+2026-12-28,Electronics,4175,9
+2026-12-28,Fashion,4159,9
+2026-12-28,Grocery,4127,9
+2026-12-28,Health & Personal Care,4153,9
+2026-12-28,Home & Kitchen,4142,9
+2026-12-28,Office Supplies,4119,9
+2026-12-28,Pet Supplies,4095,9
+2026-12-28,Sports & Fitness,4077,9
+2026-12-28,Toys,4129,9
+2027-01-04,Automotive,3621,10
+2027-01-04,Beauty,3641,10
+2027-01-04,Books,3681,10
+2027-01-04,Electronics,3730,10
+2027-01-04,Fashion,3681,10
+2027-01-04,Grocery,3650,10
+2027-01-04,Health & Personal Care,3749,10
+2027-01-04,Home & Kitchen,3685,10
+2027-01-04,Office Supplies,3634,10
+2027-01-04,Pet Supplies,3697,10
+2027-01-04,Sports & Fitness,3706,10
+2027-01-04,Toys,3631,10
+2027-01-11,Automotive,3440,11
+2027-01-11,Beauty,3464,11
+2027-01-11,Books,3489,11
+2027-01-11,Electronics,3476,11
+2027-01-11,Fashion,3486,11
+2027-01-11,Grocery,3457,11
+2027-01-11,Health & Personal Care,3568,11
+2027-01-11,Home & Kitchen,3509,11
+2027-01-11,Office Supplies,3462,11
+2027-01-11,Pet Supplies,3494,11
+2027-01-11,Sports & Fitness,3496,11
+2027-01-11,Toys,3457,11
+2027-01-18,Automotive,4044,12
+2027-01-18,Beauty,4052,12
+2027-01-18,Books,4002,12
+2027-01-18,Electronics,4043,12
+2027-01-18,Fashion,4044,12
+2027-01-18,Grocery,4064,12
+2027-01-18,Health & Personal Care,4019,12
+2027-01-18,Home & Kitchen,4056,12
+2027-01-18,Office Supplies,4070,12
+2027-01-18,Pet Supplies,4046,12
+2027-01-18,Sports & Fitness,4041,12
+2027-01-18,Toys,4083,12

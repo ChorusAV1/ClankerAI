@@ -20,6 +20,14 @@ def read_root():
 def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 
+from app.views.demand_view import router as demand_router
+
+app.include_router(demand_router)
+
+from app.views.data_entry_view import router as data_entry_router
+
+app.include_router(data_entry_router)
+
 from app.views.status_view import router as status_router
 
 app.include_router(status_router)

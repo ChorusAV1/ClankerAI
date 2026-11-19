@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { Icon } from './components/Icon'
 import { Sidebar } from './components/Sidebar'
+import { DataEntry } from './components/DataEntry'
 import { ToastStack } from './components/ToastStack'
 import { pages, recommendations } from './data/demo'
 import { Overview } from './pages/Overview'
@@ -33,6 +34,7 @@ function App() {
   const page = useSyncExternalStore(subscribeToLocation, currentPage)
   const headerScrolled = useSyncExternalStore(subscribeToScroll, isHeaderScrolled)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [entryOpen, setEntryOpen] = useState(false)
   const [tab, setTab] = useState<RecommendationKind>('compras')
   const [selected, setSelected] = useState<string | null>(null)
   const [decisions, setDecisions] = useState<Decisions>({})
@@ -89,6 +91,9 @@ useEffect(() => {
     <div className="grain" aria-hidden="true" />
     <div className="shell">
       <Sidebar page={page} pending={pending} open={menuOpen} onClose={closeMenu} />
+      <button className="sidebar-entry-button" type="button" onClick={() => { setMenuOpen(false); setEntryOpen(true) }}>
+        <span aria-hidden="true">＋</span> Ingresar datos
+      </button>
       <main inert={menuOpen}>
         <header className={`topbar${headerScrolled ? ' is-scrolled' : ''}`}>
           <div className="topbar-main">
@@ -105,6 +110,10 @@ useEffect(() => {
       </main>
     </div>
     <ToastStack notifications={notifications} onDismiss={dismissNotification} />
+    {entryOpen && <DataEntry onClose={() => setEntryOpen(false)} onSaved={tipo => {
+      setEntryOpen(false)
+      notify('Registro guardado', tipo === 'venta' ? 'Venta registrada en data/manual/ventas_nuevas.csv' : 'Cliente registrado en data/manual/clientes_nuevos.csv', 'green')
+    }} />}
   </>
 }
 
