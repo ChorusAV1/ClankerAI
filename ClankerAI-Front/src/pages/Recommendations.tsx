@@ -28,11 +28,11 @@ interface RecommendationRow {
 
 function recomendarCompra(datos: DemandForecast): { tendencia: string; sugerencia: string } {
   const valores = datos.pronostico.map(p => p.unidades)
-  if (valores.length < 8) {
+  if (valores.length < 4) {
     return { tendencia: 'Sin datos suficientes', sugerencia: 'Revisar demanda prevista' }
   }
-  const primeras = valores.slice(0, 4).reduce((a, b) => a + b, 0) / 4
-  const ultimas = valores.slice(-4).reduce((a, b) => a + b, 0) / 4
+  const primeras = valores.slice(0, 2).reduce((a, b) => a + b, 0) / 2
+  const ultimas = valores.slice(-2).reduce((a, b) => a + b, 0) / 2
   const cambio = primeras > 0 ? (ultimas - primeras) / primeras : 0
 
   // Regla heurística de negocio, NO una segunda predicción del modelo.
